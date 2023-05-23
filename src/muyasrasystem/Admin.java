@@ -25,6 +25,11 @@ public class Admin extends User {
         this.adminId = asminId;
     }
    
+     public void n(int asminId) {
+        this.adminId = asminId;
+    }
+   
+    
     //METHODS:
     /*
     وصف:
