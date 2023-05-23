@@ -25,7 +25,7 @@ public class Admin extends User {
         this.adminId = asminId;
     }
    
-     public void n(int asminId) {
+     public void m(int asminId) {
         this.adminId = asminId;
     }
    
