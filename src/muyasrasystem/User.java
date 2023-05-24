@@ -10,7 +10,25 @@ public class User {
     private String gender;
     private String userType; //هل هو ادمن ولا فيستور 
     private int phoneNum;
+    private User next;
     //constructor
+
+    public User() {
+    }
+    
+    public User(String name, int userID ,String pass, int age, String gender, String userType, int phoneNum, User next) {
+        this.name = name;
+        this.userID = userID;
+        this.pass= pass;
+        this.age = age;
+        this.gender = gender;
+        this.userType = userType;
+        this.phoneNum = phoneNum;
+        this.next=next;
+    }
+
+    
+    
     public User(String name, int userID ,String pass, int age, String gender, String userType, int phoneNum) {
         this.name = name;
         this.userID = userID;
@@ -19,12 +37,21 @@ public class User {
         this.gender = gender;
         this.userType = userType;
         this.phoneNum = phoneNum;
+        next=null;
     }
     
     
     
 
     //setters and getters
+    public User getNext() {
+        return next;
+    }
+
+    public void setNext(User next) {
+        this.next = next;
+    }
+    
     public String getName() {
         return name;
     }
@@ -45,6 +72,30 @@ public class User {
         return age;
     }
 
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public int getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(int phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
@@ -57,17 +108,9 @@ public class User {
         this.gender = gender;
     }
     
-    //METHODS:
-    //creat acount 
-    public void creatAcount(){
-        
-    }
     
-    //sign-in (check in user list if found log-in else creat acount)
-    //  هذي الميثود تستقبل الارراي تبع اليوزرز من المين وتعمل سيرش 
-    // اذا حصل اليوزر يطبع مرحبا مع اسم اليوزر  
-    public void logIn(){
+  
     
-    }
+    
     
 }
