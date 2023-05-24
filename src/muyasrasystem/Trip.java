@@ -14,8 +14,13 @@ public class Trip {
    private boolean availability= true;
    private int[] VistorID;
    private int busID;
+   private Trip next;
   
    //constraint
+   
+    public Trip() {
+    }
+
     public Trip(int tripID, String date, String location, int numberOfChairs, int[] Chairs, String adminName, int adminID, boolean availability, int busID) {
         this.tripID = tripID;
         this.date = date;
@@ -26,6 +31,19 @@ public class Trip {
         this.adminID = adminID;
         this.availability = availability;
         this.busID = busID;
+        next=null;
+    }
+    public Trip(int tripID, String date, String location, int numberOfChairs, int[] Chairs, String adminName, int adminID, boolean availability, int busID, Trip next) {
+        this.tripID = tripID;
+        this.date = date;
+        this.location = location;
+        this.numberOfChairs = numberOfChairs;
+        this.arrayChairs = Chairs;
+        this.adminName = adminName;
+        this.adminID = adminID;
+        this.availability = availability;
+        this.busID = busID;
+        this.next=next;
     }
 
     //   منفصلة عن الباقي عشان لمن نجي نعمل ادد للتريب(المشتركين في هذي الرحلة)خليت الفيستور ليست في الكونستريت
@@ -107,19 +125,14 @@ public class Trip {
     }
 
     
-    //METHODS:
-    //chairs is full???
-    /*
-    علشان نقدر نتأكد لو مليان الفيستور محا يقدر يسجل 
-    او في حالة لمن نجي نعرض الافايلبل تريب م تضهر لانها فلل
-    */
-    
-    // ممكن ميثود تشيك على الافيلابيلتي حق التريب بحيث لو كانت الكراسي فلل
-    //يغير الافايلبيلتي لفولس
-    //cheack avilability of trip
-    
-    
-    //مدري اذا فيه اشياء اضافية
+
+    public Trip getNext() {
+        return next;
+    }
+
+    public void setNext(Trip next) {
+        this.next = next;
+    }
    
    
    
