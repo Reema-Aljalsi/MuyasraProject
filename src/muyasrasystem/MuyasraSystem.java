@@ -1,38 +1,121 @@
-//date of creation the classes 22 may by haneen 
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package muyasrasystem;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
+/**
+ *
+ * @author hanee
+ */
 public class MuyasraSystem {
 
     public static void main(String[] args) {
-        
-        ArrayList<Trip> trips= new ArrayList<Trip>();// هذي اللسته حنستخدمها لمن الادمن يسوي ادد تريب
-        
-        ArrayList<User> users= new ArrayList<User>();// --> حنستخدمها لمن نسوي كرييت اكاونت ينضاف اليوزر هنا سواء ادمن او فيسيتور
-        
-//        ArrayList<Visitor> visitors= new ArrayList<Visitor>();// --> حنستخدمها بعد ما يسوي الفيستور كرريت ينضاف هنا عشان لمن يجي يسوي لوق ان
-//        /*
-//        كمان عشان لمن يسوي لوق ان يسوي سيرش في هذي الليست في حال كان موجود يدخله على واجهة الفيستور
-//        في حال ماكان موجود يدخله تضهر له رسالة منت موجود بالسستم سوي كرييت اكاونت 
-//        */
-//        ArrayList<Admin> admins= new ArrayList<Admin>();// --> حنستخدمها بعد ما يسوي الفيستور كرريت ينضاف هنا عشان لمن يجي يسوي لوق ان
-//        // كمان هنا نفس الكلام للادمن 
-        
-//______________________________________________________________________________________________________        
-        
-        //MENU: 1- creat a count , 2- log-in
-        
-        //if creat a count, are you admin or visitor?? يدخل الانفورمايشن المطلوبة 
+       Scanner scan = new Scanner(System.in);
        
-        //if log in, the system check if its (visitor) or (admin)
-             
-        //if its ADMIN--> show the menu of admin, 1- add trip, 2- edit , etc..
-        // يختار الفنكشن الي يبيها ويسير البروسيس بناءا على طلبه ويسير انتراكشن مع الادمن
+       UserList users = new UserList();
+       TripList Trip = new TripList();
+       
+       int choice;
+       
+       do{
            
-        //if its VISITOR--> show the menu of visitor, 1- booking trip, 2- delet trip, etc..
-        //يختار الفنكشن الي يبيها ويسير البروسيس بناءا على طلبه ويسير انتراكشن مع الفيسيتور 
+           firstMenu();
+           choice= scan.nextInt();
+           
+           //creat acount 
+           if (choice ==1){
+               creatAcount(users);
+               
+           //log-in    
+           }else if(choice ==2){
+               //if els اذا كان ادمن او اذا كان فيسيتور
+               System.out.println("Enter your id: ");
+               int userId=scan.nextInt();
+               System.out.println("Enter your password");
+               String pass=scan.nextLine();
+               User user= users.logIn(userId,pass);
+               if(user==null){
+                   System.out.println("there is no user with this user Id!!\n go to creat acount ");
+                   creatAcount(users);
+                   
+               }else{
+                   if(user.getUserType().equalsIgnoreCase("admin")){
+                      showAdminMenue(); 
+                       
+                       
+                   }else if(user.getUserType().equalsIgnoreCase("visitor")){
+                      showVisitorMenue(); 
+                       
+                       
+                     
+                   }
+                   
+               }
+           //quit the system
+           }else if(choice == 3){
+               System.out.println("quit the system!");
+           }
+           
+       }while(choice!=3);
+        
+    
+
+
+    }
+    
+    public static void firstMenu(){
+        System.out.println("--------MUYASRA---------");
+        System.out.println("1- creat acount");
+        System.out.println("2- log in");
+        System.out.println("3- quit the system");
+    } 
+    
+    public static void creatAcount ( UserList users){
+        Scanner scan= new Scanner(System.in);
+        String name,gendar , pass;
+        int id,age,phoneNumber;
+        System.out.println("are you (admin) or (visitor)?");
+        String userType=scan.next();
+        System.out.println("what's your name?");
+                name=scan.next();
+                System.out.println("Enter your ID: ");
+                id=scan.nextInt();
+                System.out.println("how old are you?");
+                age=scan.nextInt();
+                System.out.println("Female (F) or male (M)?");
+                gendar=scan.next();
+                System.out.println("Enter your phone number: (05..)");
+                phoneNumber=scan.nextInt();
+                System.out.println("Enter your password:");
+                pass=scan.next();
+               if(userType.equalsIgnoreCase("admin")){  
+                   users.insert(name,id,pass,age,gendar,"admin",phoneNumber);
+               } else if(userType.equalsIgnoreCase("visitor")){
+                   users.insert(name,id,pass,age,gendar,"visitor",phoneNumber);
+               }
+               
+        
+    }
+
+
+    private static void showAdminMenue() {
+        System.out.println("--------MUYASRA---------");
+        System.out.println("1- add trip");
+        System.out.println("2- show total visitor in the trip");
+        System.out.println("3- remove a visitor from trip");
+        System.out.println("4- edit time and location in trip");
+        System.out.println("5- change bus in the trip");
+    }
+
+    private static void showVisitorMenue() {
+        System.out.println("--------MUYASRA---------");
+        System.out.println("1- booking trip");
+        System.out.println("2- get ticket");
+        
     }
     
 }
