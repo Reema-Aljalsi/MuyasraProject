@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package muyasrasystem;
 
 import java.util.Scanner;
 
-/**
- *
- * @author hanee
- */
 public class MuyasraSystem {
 
     public static void main(String[] args) {
@@ -36,7 +27,7 @@ public class MuyasraSystem {
                System.out.println("Enter your id: ");
                int userId=scan.nextInt();
                System.out.println("Enter your password");
-               String pass=scan.nextLine();
+               String pass=scan.next();
                User user= users.logIn(userId,pass);
                if(user==null){
                    System.out.println("there is no user with this user Id!!\n go to creat acount ");
@@ -45,7 +36,8 @@ public class MuyasraSystem {
                }else{
                    if(user.getUserType().equalsIgnoreCase("admin")){
                       showAdminMenue(); 
-                       
+                      //add trip
+
                        
                    }else if(user.getUserType().equalsIgnoreCase("visitor")){
                       showVisitorMenue(); 
@@ -104,18 +96,15 @@ public class MuyasraSystem {
 
     private static void showAdminMenue() {
         System.out.println("--------MUYASRA---------");
-        System.out.println("1- add trip");
-        System.out.println("2- show total visitor in the trip");
-        System.out.println("3- remove a visitor from trip");
-        System.out.println("4- edit time and location in trip");
-        System.out.println("5- change bus in the trip");
-    }
-
-    private static void showVisitorMenue() {
-        System.out.println("--------MUYASRA---------");
-        System.out.println("1- booking trip");
-        System.out.println("2- get ticket");
-        
+        System.out.println("1- add trip");//--> israa
+        System.out.println("2- show total visitor in the trip");// --> reema 
+        System.out.println("3- remove a visitor from trip");// --> haneen
     }
     
+    private static void showVisitorMenue() {
+        System.out.println("--------MUYASRA---------");
+        System.out.println("1- browse trip"); // --> joud 
+        System.out.println("2- booking trip");//--> reema
+          
+    }
 }
