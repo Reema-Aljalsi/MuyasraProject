@@ -5,15 +5,15 @@ import java.util.Scanner;
 public class MuyasraSystem {
     
     static Scanner scan = new Scanner(System.in);
-    static TripList Trip = new TripList();
+    static TripList2 Trip = new TripList2();
     
     public static void main(String[] args) {
-
+     
        
        UserList users = new UserList();
 
        
-       int choice;
+        int choice;
        
        do{
            
@@ -39,13 +39,18 @@ public class MuyasraSystem {
                }else{
                    if(user.getUserType().equalsIgnoreCase("admin")){
                       showAdminMenue(); 
-                      //add trip
+                      
+                      
+                      
+                      
 
                        
                    }else if(user.getUserType().equalsIgnoreCase("visitor")){
                       showVisitorMenue(); 
                       
-                       
+                      
+                      
+                      
                        
                      
                    }

@@ -1,17 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package muyasrasystem;
 
-// LinkedList.java
-// Author: Dr. Jonathan Cazalas
-// 6/12/2013
-// Class from which we can create fully functional Linked Lists
+/**
+ *
+ * @author hanee
+ */
+public class TripList2 {
 
-
-public class TripList {
-	// head: reference variable to the first node of the list
     private Trip head;
     
     // CONSTRUCTORS
-    public TripList() {
+    public TripList2() {
         head = null;
     }
 	
@@ -355,3 +358,5 @@ public class TripList {
     //مدري اذا فيه اشياء اضافية
         
 }
+  
+

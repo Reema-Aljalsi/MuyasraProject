@@ -1,10 +1,5 @@
 package muyasrasystem;
 
-// LinkedList.java
-// Author: Dr. Jonathan Cazalas
-// 6/12/2013
-// Class from which we can create fully functional Linked Lists
-
 
 public class UserList {
 	// head: reference variable to the first node of the list
