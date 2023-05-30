@@ -68,6 +68,35 @@ public class TripList {
 		return null;
 	}
 	
+	public Trip AddTrip(int tripID, String date, String location, int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
+		return head = AddTrip(head,tripID,date,location,numberOfChairs,adminName,adminID,availability,busID);
+	}
+	//
+	// boolean | search(LLnode, int)
+	//
+	private Trip AddTrip(Trip p, int tripID, String date, String location, int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
+                
+                if (head == null) {
+			head = new Trip(tripID,date,location,numberOfChairs,adminName,adminID,availability,busID);
+			return head;
+		}
+                else {
+			// We need to traverse to the correct insertion location...so we need a help ptr
+			Trip helpPtr = p;
+			// Traverse to correct insertion point
+			while (helpPtr.getNext() != null) {// we found our spot and should break out of the while loop
+				helpPtr = helpPtr.getNext();
+			}
+			// Now make the new node. Set its next to point to the successor node.
+			// And then make the predecessor node point to the new node
+			Trip newNode = new Trip(tripID,date,location,numberOfChairs,adminName,adminID,availability,busID);
+			helpPtr.setNext(newNode);
+		}
+		// Return head
+		return head;
+              
+	}
+	
 	
 //	//
 //	// void | PrintList()
