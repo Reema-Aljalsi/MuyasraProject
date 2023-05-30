@@ -3,12 +3,15 @@ package muyasrasystem;
 import java.util.Scanner;
 
 public class MuyasraSystem {
-
+    
+    static Scanner scan = new Scanner(System.in);
+    static TripList Trip = new TripList();
+    
     public static void main(String[] args) {
-       Scanner scan = new Scanner(System.in);
+
        
        UserList users = new UserList();
-       TripList Trip = new TripList();
+
        
        int choice;
        
@@ -41,6 +44,7 @@ public class MuyasraSystem {
                        
                    }else if(user.getUserType().equalsIgnoreCase("visitor")){
                       showVisitorMenue(); 
+                      
                        
                        
                      
@@ -50,6 +54,7 @@ public class MuyasraSystem {
            //quit the system
            }else if(choice == 3){
                System.out.println("quit the system!");
+               System.exit(0);
            }
            
        }while(choice!=3);
@@ -86,8 +91,13 @@ public class MuyasraSystem {
                 pass=scan.next();
                if(userType.equalsIgnoreCase("admin")){  
                    users.insert(name,id,pass,age,gendar,"admin",phoneNumber);
+                   showAdminMenue(); 
+                   
                } else if(userType.equalsIgnoreCase("visitor")){
                    users.insert(name,id,pass,age,gendar,"visitor",phoneNumber);
+                   showVisitorMenue(); 
+                  
+                   
                }
                
         
@@ -99,12 +109,55 @@ public class MuyasraSystem {
         System.out.println("1- add trip");//--> israa
         System.out.println("2- show total visitor in the trip");// --> reema 
         System.out.println("3- remove a visitor from trip");// --> haneen
+        AdminSelect(scan.nextInt());
     }
+    private static void AdminSelect(int selection) {
+        
+        int TripID, numOfChairs, AdminID, busID;
+        String date, location, adminName;
+        boolean Availability;
+        
+        if (selection == 1) {
+            System.out.println("Enter Trip ID: ");
+            TripID = scan.nextInt();
+
+            System.out.println("Enter Trip's Date: ");
+            date = scan.next();
+
+            System.out.println("Enter Trip's location: ");
+            location = scan.next();
+
+            System.out.println("Enter number of chairs: ");
+            numOfChairs = scan.nextInt();
+
+            System.out.println("Enter your name: ");
+            adminName = scan.next();
+
+            System.out.println("Enter your ID: ");
+            AdminID = scan.nextInt();
+
+            System.out.println("Is this trip available? true/false");
+            if ((scan.next()).equalsIgnoreCase("true")) {
+                Availability = true;
+            } else {
+                Availability = false;
+            }
+
+            System.out.println("Enter bus ID: ");
+            busID = scan.nextInt();
+
+            Trip.AddTrip(TripID, date, location, numOfChairs, adminName, AdminID, Availability, busID);
+        }
+    }    
     
     private static void showVisitorMenue() {
         System.out.println("--------MUYASRA---------");
         System.out.println("1- browse trip"); // --> joud 
         System.out.println("2- booking trip");//--> reema
+         VisitorSelect(scan.nextInt());
           
     }
+    private static void VisitorSelect(int selection) {
+
+    }    
 }
