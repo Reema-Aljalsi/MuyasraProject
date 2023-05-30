@@ -1,6 +1,8 @@
 
 package muyasrasystem;
 
+import java.util.ArrayList;
+
 
 public class Trip {
    //data filds 
@@ -8,11 +10,10 @@ public class Trip {
    private String date;
    private String location;
    private int numberOfChairs;
-   private int[] arrayChairs; 
    private String adminName;
    private int adminID;
    private boolean availability= true;
-   private int[] VistorID;
+   private ArrayList VistorID;
    private int busID;
    private Trip next;
   
@@ -21,24 +22,22 @@ public class Trip {
     public Trip() {
     }
 
-    public Trip(int tripID, String date, String location, int numberOfChairs, int[] Chairs, String adminName, int adminID, boolean availability, int busID) {
+    public Trip(int tripID, String date, String location, int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
         this.tripID = tripID;
         this.date = date;
         this.location = location;
         this.numberOfChairs = numberOfChairs;
-        this.arrayChairs = Chairs;
         this.adminName = adminName;
         this.adminID = adminID;
         this.availability = availability;
         this.busID = busID;
         next=null;
     }
-    public Trip(int tripID, String date, String location, int numberOfChairs, int[] Chairs, String adminName, int adminID, boolean availability, int busID, Trip next) {
+    public Trip(int tripID, String date, String location, int numberOfChairs, String adminName, int adminID, boolean availability, int busID, Trip next) {
         this.tripID = tripID;
         this.date = date;
         this.location = location;
         this.numberOfChairs = numberOfChairs;
-        this.arrayChairs = Chairs;
         this.adminName = adminName;
         this.adminID = adminID;
         this.availability = availability;
@@ -107,23 +106,24 @@ public class Trip {
     public void setAvailability(boolean availability) {
         this.availability = availability;
     }
-    
-    public int[] getChairs() {
-        return arrayChairs;
-    }
 
-    public void setChairs(int[] Chairs) {
-        this.arrayChairs = Chairs;
-    }
-    
-    public int[] getVistorID() {
+    public ArrayList getVistorID() {
         return VistorID;
     }
 
-    public void setVistorID(int[] VistorID) {
+    public void setVistorID(ArrayList VistorID) {
         this.VistorID = VistorID;
     }
 
+    public int getBusID() {
+        return busID;
+    }
+
+    public void setBusID(int busID) {
+        this.busID = busID;
+    }
+    
+    
     
 
     public Trip getNext() {
