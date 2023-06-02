@@ -12,7 +12,8 @@ public class MuyasraSystem {
     static TripList2 Trip = new TripList2();
     //declar user list
     static UserList users = new UserList();
-
+    
+//-------------------------------------------------------------------------------------------
     public static void main(String[] args) {
         
         //declear the choice
@@ -58,14 +59,15 @@ public class MuyasraSystem {
                 
             //quit the system
             }else if(choice == 3){
-                System.out.println("quit the system!");
+                System.out.println("Thank you for using MUYASARA system");
                 System.exit(0);
             }
            
         }while(choice!=3);
-        System.out.println("Thank you for using MUYASARA system");
+        
     }
-    
+   
+//-------------------------------------------------------------------------------------------  
     public static void firstMenu(){
         System.out.println("--------MUYASRA---------");
         System.out.println("1- creat acount");
@@ -131,6 +133,7 @@ public class MuyasraSystem {
         
     }
 
+//-------------------------------------------------------------------------------------------
     private static void showAdminMenue() {
         System.out.println("--------MUYASRA---------");
         System.out.println("1- add trip");//--> israa
@@ -190,7 +193,17 @@ public class MuyasraSystem {
         
         //3- remove a visitor from trip
         }else if (selection == 3){
-         
+            int idT,idV;
+            System.out.println("choose the trip: ");
+          //browse trip();
+            System.out.println("Enter the trip ID: ");
+            idV=scan.nextInt();
+            
+            System.out.println("Enter the visitor id: ");
+            idV=scan.nextInt();
+            
+           //Trip.search(idT,idv);
+            
         //4- log out
         }else if (selection == 4){
             return;
@@ -203,7 +216,7 @@ public class MuyasraSystem {
         
     }    
     
-    
+//-------------------------------------------------------------------------------------------    
     private static void showVisitorMenue() {
         System.out.println("--------MUYASRA---------");
         System.out.println("1- browse trip"); // --> joud 
