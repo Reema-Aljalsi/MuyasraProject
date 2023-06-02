@@ -186,13 +186,20 @@ public class MuyasraSystem {
         
         //2- show total visitor in the trip
         }else if (selection == 2){
+          System.out.println("Enter the trip ID: ");
+          int TId = scan.nextInt();
+          
+          // call the VistorNumber function
+          Trip.VistorNumber(TId);
+
+           
             
         
         
         //3- remove a visitor from trip
         }else if (selection == 3){
             int idT,idV;
-            System.out.println("choose the trip: ");
+            System.out.println("Choose the trip: ");
           //browse trip();
             System.out.println("Enter the trip ID: ");
             idT=scan.nextInt();
@@ -200,7 +207,7 @@ public class MuyasraSystem {
             System.out.println("Enter the visitor id: ");
             idV=scan.nextInt();
             
-           //Trip.search(idT,idv);
+           //Trip.RemoveTrip(idT,idv);
             
         //4- log out
         }else if (selection == 4){
@@ -238,7 +245,7 @@ public class MuyasraSystem {
             System.out.print("Enter the trip ID: ");
             int TId = scan.nextInt();
             
-            System.out.println("Enter the visitor id: ");
+            System.out.println("Enter the visitor ID: ");
            int  VId =scan.nextInt();
             
             // call book trip function
