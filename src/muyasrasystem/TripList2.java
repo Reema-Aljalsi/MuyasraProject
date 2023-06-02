@@ -51,6 +51,35 @@ public class TripList2 {
 //		return false;
 //	}
         
+        
+        //book trip
+        public void bookTrip(int idT,int idV) {
+                bookTrip(head, idT,idV);
+	}
+	
+	private void bookTrip(Trip p, int idT,int idV) {
+		Trip helpPtr = p;
+		while (helpPtr != null) {
+                    //search for trip
+			if (helpPtr.getTripID()== idT){
+                            //cheack avalibality is true
+                            if(helpPtr.checkAvailability()){
+                            //add visitor id
+                            helpPtr.getVistorID().add(idV);
+                            // dec the number of chairs
+                            helpPtr.setNumberOfChairs(helpPtr.getNumberOfChairs()-1);
+                          
+                            }
+                        }
+			helpPtr = helpPtr.getNext();			
+		}
+                
+                System.out.println("the trip with the ID:" + helpPtr.getTripID()+"\n"
+                +"departure at:"+helpPtr.getDeparture()+ "arrival at:" + helpPtr.getArrival() + "on date of:"+ helpPtr.getDate()+"\n"
+                + "has been successfully booked");;
+	}
+        
+        //book trip
         public void search(int idT,int idV) {
                 search(head, idT,idV);
 	}
@@ -59,9 +88,7 @@ public class TripList2 {
 		Trip helpPtr = p;
 		while (helpPtr != null) {
 			if (helpPtr.getTripID()== idT){
-                            helpPtr.getVistorID().toString();
                             helpPtr.getVistorID().remove(idV);
-                            helpPtr.getVistorID().toString();
                             }
 			helpPtr = helpPtr.getNext();			
 		}
@@ -89,16 +116,16 @@ public class TripList2 {
 		return null;
 	}
 	
-	public Trip AddTrip(int tripID, String date, String location, int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
-		return head = AddTrip(head,tripID,date,location,numberOfChairs,adminName,adminID,availability,busID);
+	public Trip AddTrip(int tripID, String date, String departure, String arrival , int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
+		return head = AddTrip(head,tripID,date, departure, arrival ,numberOfChairs,adminName,adminID,availability,busID);
 	}
 	//
 	// boolean | search(LLnode, int)
 	//
-	private Trip AddTrip(Trip p, int tripID, String date, String location, int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
+	private Trip AddTrip(Trip p, int tripID, String date, String departure, String arrival, int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
                 
                 if (head == null) {
-			head = new Trip(tripID,date,location,numberOfChairs,adminName,adminID,availability,busID);
+			head = new Trip(tripID,date,departure,arrival ,numberOfChairs,adminName,adminID,availability,busID);
 			return head;
 		}
                 else {
@@ -110,7 +137,7 @@ public class TripList2 {
 			}
 			// Now make the new node. Set its next to point to the successor node.
 			// And then make the predecessor node point to the new node
-			Trip newNode = new Trip(tripID,date,location,numberOfChairs,adminName,adminID,availability,busID);
+			Trip newNode = new Trip(tripID,date,departure,arrival,numberOfChairs,adminName,adminID,availability,busID);
 			helpPtr.setNext(newNode);
 		}
 		// Return head
