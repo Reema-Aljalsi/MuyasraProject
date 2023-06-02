@@ -35,20 +35,38 @@ public class TripList2 {
 	//
 	// boolean | search(int)
 	//
-	public boolean search(int data) {
-		return search(head, data);
+//	public boolean search(int data) {
+//		return search(head, data);
+//	}
+//	//
+//	// boolean | search(LLnode, int)
+//	//
+//	private boolean search(Trip p, int data) {
+//		Trip helpPtr = p;
+//		while (helpPtr != null) {
+//			if (helpPtr.getTripID() == data)
+//				return true;
+//			helpPtr = helpPtr.getNext();			
+//		}
+//		return false;
+//	}
+        
+        public void search(int idT,int idV) {
+                search(head, idT,idV);
 	}
-	//
-	// boolean | search(LLnode, int)
-	//
-	private boolean search(Trip p, int data) {
+	
+	private void search(Trip p, int idT,int idV) {
 		Trip helpPtr = p;
 		while (helpPtr != null) {
-			if (helpPtr.getTripID() == data)
-				return true;
+			if (helpPtr.getTripID()== idT){
+                            helpPtr.getVistorID().toString();
+                            helpPtr.getVistorID().remove(idV);
+                            helpPtr.getVistorID().toString();
+                            }
 			helpPtr = helpPtr.getNext();			
 		}
-		return false;
+                
+                System.out.println("There is no trip with this id"+idT);;
 	}
 
 
