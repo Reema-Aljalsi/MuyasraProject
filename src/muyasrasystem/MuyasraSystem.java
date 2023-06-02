@@ -137,7 +137,7 @@ public class MuyasraSystem {
     private static void showAdminMenue() {
         System.out.println("--------MUYASRA---------");
         System.out.println("1- add trip");//--> israa
-        System.out.println("2- show total visitor in the trip");// --> reema 
+        System.out.println("2- show total number of visitor in the trip");// --> reema 
         System.out.println("3- remove a visitor from trip");// --> haneen
         System.out.println("4- log out");
         
@@ -160,8 +160,11 @@ public class MuyasraSystem {
             System.out.println("Enter Trip's Date: ");
             date = scan.next();
 
-            System.out.println("Enter Trip's location: ");
-            location = scan.next();
+            System.out.println("Enter Trip's departure: ");
+            String departure = scan.next();
+             
+             System.out.println("Enter Trip's arrival: ");
+             String arrival = scan.next();
 
             System.out.println("Enter number of chairs: ");
             numOfChairs = scan.nextInt();
@@ -172,18 +175,13 @@ public class MuyasraSystem {
             System.out.println("Enter your ID: ");
             AdminID = scan.nextInt();
 
-            System.out.println("Is this trip available? true/false");
-            if ((scan.next()).equalsIgnoreCase("true")) {
-                Availability = true;
-            } else {
-                Availability = false;
-            }
+            Availability = true;
 
             System.out.println("Enter bus ID: ");
             busID = scan.nextInt();
 
             //insert the trip in the trip list 
-            Trip.AddTrip(TripID, date, location, numOfChairs, adminName, AdminID, Availability, busID);
+            Trip.AddTrip(TripID, date, departure,arrival, numOfChairs, adminName, AdminID, Availability, busID);
         
         
         //2- show total visitor in the trip
@@ -197,7 +195,7 @@ public class MuyasraSystem {
             System.out.println("choose the trip: ");
           //browse trip();
             System.out.println("Enter the trip ID: ");
-            idV=scan.nextInt();
+            idT=scan.nextInt();
             
             System.out.println("Enter the visitor id: ");
             idV=scan.nextInt();
@@ -234,6 +232,17 @@ public class MuyasraSystem {
 
         //2- booking trip
         }else if (selection == 2){
+         //call browse trip
+         //
+         //take user input
+            System.out.print("Enter the trip ID: ");
+            int TId = scan.nextInt();
+            
+            System.out.println("Enter the visitor id: ");
+           int  VId =scan.nextInt();
+            
+            // call book trip function
+            Trip.bookTrip(TId,VId );
             
             
         //3- log out
