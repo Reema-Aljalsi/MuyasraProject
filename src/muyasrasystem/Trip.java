@@ -8,7 +8,8 @@ public class Trip {
    //data filds 
    private int tripID;
    private String date;
-   private String location;
+   private String departure;
+   private String arrival;
    private int numberOfChairs;
    private String adminName;
    private int adminID;
@@ -22,10 +23,11 @@ public class Trip {
     public Trip() {
     }
 
-    public Trip(int tripID, String date, String location, int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
+    public Trip(int tripID, String date, String departure, String arrival, int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
         this.tripID = tripID;
         this.date = date;
-        this.location = location;
+        this.departure = departure;
+        this.arrival= arrival;
         this.numberOfChairs = numberOfChairs;
         this.adminName = adminName;
         this.adminID = adminID;
@@ -33,10 +35,11 @@ public class Trip {
         this.busID = busID;
         next=null;
     }
-    public Trip(int tripID, String date, String location, int numberOfChairs, String adminName, int adminID, boolean availability, int busID, Trip next) {
+    public Trip(int tripID, String date, String departure, String arrival, int numberOfChairs, String adminName, int adminID, boolean availability, int busID, Trip next) {
         this.tripID = tripID;
         this.date = date;
-        this.location = location;
+        this.departure = departure;
+        this.arrival= arrival;
         this.numberOfChairs = numberOfChairs;
         this.adminName = adminName;
         this.adminID = adminID;
@@ -67,13 +70,23 @@ public class Trip {
         this.date = date;
     }
 
-    public String getLocation() {
-        return location;
+    public String getDeparture() {
+        return departure;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDeparture(String department) {
+        this.departure = department;
     }
+
+    public String getArrival() {
+        return arrival;
+    }
+
+    public void setArrival(String arrival) {
+        this.arrival = arrival;
+    }
+
+
 
     public int getNumberOfChairs() {
         return numberOfChairs;
@@ -133,6 +146,14 @@ public class Trip {
     public void setNext(Trip next) {
         this.next = next;
     }
+    
+    //cheack avaliblity 
+     public boolean checkAvailability(){
+         if(numberOfChairs<= 0){
+             availability=false;
+         }
+         return availability;
+     }
    
    
    
