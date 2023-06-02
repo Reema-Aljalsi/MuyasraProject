@@ -21,7 +21,7 @@ public class TripList2 {
 	/* Below are MANY methods that are used on Linked Lists.
 	 * 
 	 * Examples:
-	 * search, insert, delete, isEmpty, sumNodes, and many more
+	 * RemoveTrip, insert, delete, isEmpty, sumNodes, and many more
 	 */
 	
 	//
@@ -33,15 +33,15 @@ public class TripList2 {
 	
 	
 	//
-	// boolean | search(int)
+	// boolean | RemoveTrip(int)
 	//
-//	public boolean search(int data) {
-//		return search(head, data);
+//	public boolean RemoveTrip(int data) {
+//		return RemoveTrip(head, data);
 //	}
 //	//
-//	// boolean | search(LLnode, int)
+//	// boolean | RemoveTrip(LLnode, int)
 //	//
-//	private boolean search(Trip p, int data) {
+//	private boolean RemoveTrip(Trip p, int data) {
 //		Trip helpPtr = p;
 //		while (helpPtr != null) {
 //			if (helpPtr.getTripID() == data)
@@ -79,12 +79,12 @@ public class TripList2 {
                 + "has been successfully booked");;
 	}
         
-        //book trip
-        public void search(int idT,int idV) {
-                search(head, idT,idV);
+        //remove trip
+        public void RemoveTrip(int idT,int idV) {
+                RemoveTrip(head, idT,idV);
 	}
 	
-	private void search(Trip p, int idT,int idV) {
+	private void RemoveTrip(Trip p, int idT,int idV) {
 		Trip helpPtr = p;
 		while (helpPtr != null) {
 			if (helpPtr.getTripID()== idT){
@@ -96,15 +96,37 @@ public class TripList2 {
                 System.out.println("There is no trip with this id"+idT);;
 	}
 
+        
+        
+        //VistorNumber 
+        public void VistorNumber(int idT) {
+                VistorNumber(head, idT);
+	}
+	
+	private void VistorNumber(Trip p, int idT) {
+		Trip helpPtr = p;
+		while (helpPtr != null) {
+			if (helpPtr.getTripID()== idT){
+                           int vnum = helpPtr.getVistorID().size();
+                            System.out.println("the total number of visitors in the"
+                            + "trip with ID number" + helpPtr.getTripID() 
+                            + "is: "+ vnum);
+                            }
+			helpPtr = helpPtr.getNext();			
+		}
+                  
+	}
+
+
 
 	//
-	// boolean | search(int)
+	// boolean | RemoveTrip(int)
 	//
 	public Trip findNode(int data) {
 		return findNode(head, data);
 	}
 	//
-	// boolean | search(LLnode, int)
+	// boolean | RemoveTrip(LLnode, int)
 	//
 	private Trip findNode(Trip p, int tripId) {
 		Trip helpPtr = p;
@@ -120,7 +142,7 @@ public class TripList2 {
 		return head = AddTrip(head,tripID,date, departure, arrival ,numberOfChairs,adminName,adminID,availability,busID);
 	}
 	//
-	// boolean | search(LLnode, int)
+	// boolean | RemoveTrip(LLnode, int)
 	//
 	private Trip AddTrip(Trip p, int tripID, String date, String departure, String arrival, int numberOfChairs, String adminName, int adminID, boolean availability, int busID) {
                 
@@ -389,7 +411,7 @@ public class TripList2 {
 //        
         
     //METHODS:
-    //chairs is full???
+    //chairs is full???---> same as cheack avalibalsity: done in trip class
     /*
     علشان نقدر نتأكد لو مليان الفيستور محا يقدر يسجل 
     او في حالة لمن نجي نعرض الافايلبل تريب م تضهر لانها فلل
@@ -397,10 +419,10 @@ public class TripList2 {
     
     // ممكن ميثود تشيك على الافيلابيلتي حق التريب بحيث لو كانت الكراسي فلل
     //يغير الافايلبيلتي لفولس
-    //cheack avilability of trip
+    //cheack avilability of trip: done in trip class
     
     
-    //مدري اذا فيه اشياء اضافية
+
         
 }
   
