@@ -50,7 +50,28 @@ public class TripList2 {
 //		}
 //		return false;
 //	}
-        
+         //browse trip
+        public void browseTrip() {
+		browseTrip(head);
+	}
+        public void browseTrip(Trip head) {
+            Trip helpPtr = head;
+            
+                
+                while (helpPtr != null) {
+                    System.out.print("Trip ID is:"+helpPtr.getTripID()+"\n"
+                +"Trip Date:"+helpPtr.getDate()+"\n"
+                +"departure at:"+helpPtr.getDeparture()+"\n"
+                +"Arrival at:"+helpPtr.getArrival()+"\n"
+                +"Availability:"+helpPtr.isAvailability()+"\n"
+                +"Bus ID is:"+helpPtr.getBusID());
+                    
+                    helpPtr = helpPtr.getNext();
+                }
+                System.out.println();
+            
+                
+        }
         
         //book trip
         public void bookTrip(int idT,int idV) {
