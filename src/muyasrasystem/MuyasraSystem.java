@@ -236,7 +236,9 @@ public class MuyasraSystem {
         //1- browse trip
         if (selection == 1) {
             
-
+             Trip.browseTrip();
+            
+ 
         //2- booking trip
         }else if (selection == 2){
          //call browse trip
