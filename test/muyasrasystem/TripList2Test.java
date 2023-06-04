@@ -123,22 +123,21 @@ public class TripList2Test {
      */
     @Test
     public void testAddTrip() {
-        System.out.println("AddTrip");
-        int tripID = 0;
-        String date = "";
-        String departure = "";
-        String arrival = "";
-        int numberOfChairs = 0;
-        String adminName = "";
-        int adminID = 0;
-        boolean availability = false;
-        int busID = 0;
+       System.out.println("AddTrip");
+        int tripID = 1;
+        String date = "03/06/23";
+        String departure = "JEDDAH";
+        String arrival = "MECCA";
+        int numberOfChairs = 25;
+        String adminName = "Ahmad";
+        int adminID = 1627434;
+        boolean availability = true;
+        int busID = 12;
         TripList2 instance = new TripList2();
-        Trip expResult = null;
         Trip result = instance.AddTrip(tripID, date, departure, arrival, numberOfChairs, adminName, adminID, availability, busID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Trip expResult = instance.findNode(1);
+        
+        assertSame(expResult, result);
     }
     
 }
