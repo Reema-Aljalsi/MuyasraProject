@@ -14,7 +14,7 @@ public class Trip {
    private String adminName;
    private int adminID;
    private boolean availability= true;
-   private ArrayList VistorID;
+   private int numOfVistor=0;
    private int busID;
    private Trip next;
   
@@ -120,13 +120,15 @@ public class Trip {
         this.availability = availability;
     }
 
-    public ArrayList getVistorID() {
-        return VistorID;
+    public int getNumOfVistor() {
+        return numOfVistor;
     }
 
-    public void setVistorID(ArrayList VistorID) {
-        this.VistorID = VistorID;
+    public void setNumOfVistor(int numOfVistor) {
+        this.numOfVistor = numOfVistor;
     }
+
+   
 
     public int getBusID() {
         return busID;
@@ -136,9 +138,6 @@ public class Trip {
         this.busID = busID;
     }
     
-    
-    
-
     public Trip getNext() {
         return next;
     }

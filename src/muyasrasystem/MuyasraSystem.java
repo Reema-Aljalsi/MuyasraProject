@@ -4,35 +4,39 @@ import static java.lang.System.exit;
 import java.util.Scanner;
 
 public class MuyasraSystem {
-    
     //creat scanner 
     static Scanner scan = new Scanner(System.in);
-    
     //declar trip list  
     static TripList2 Trip = new TripList2();
     //declar user list
     static UserList users = new UserList();
     
-//-------------------------------------------------------------------------------------------
+//==============================================================================
+//                                   MAIN                                
+//==============================================================================
+    
     public static void main(String[] args) {
-        
         //declear the choice
         int choice;
        
-        //do while loop to run the program
+        //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+        //                       DO-WHILE LOOP                            \\
+        //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ 
         do{
-           
             firstMenu();
             //user choice from menu
             choice= scan.nextInt();
            
-            //if the user choose 1 --> creat acount 
+        //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+        //                       CREAT ACOUNT                             \\
+        //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ 
             if (choice ==1){
-               
                 //passing the user list to adding the new user 
                 creatAcount(users);
                
-            //log-in    
+        //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+        //                          LOG-IN                                \\
+        //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\    
             }else if(choice ==2){
                 System.out.println("Enter your id: ");
                 int userId=scan.nextInt();
@@ -50,24 +54,26 @@ public class MuyasraSystem {
                 }else{
                     System.out.println("\n WELLCOME "+user.getName()+" in MUYASARA!!!\n");
                     if(user.getUserType().equalsIgnoreCase("admin")){
-                        showAdminMenue(); 
-                        
+                        showAdminMenue(user); 
                     }else if(user.getUserType().equalsIgnoreCase("visitor")){
-                      showVisitorMenue(); 
+                        showVisitorMenue(user); 
                     }
                 }
                 
-            //quit the system
+        //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+        //                       QUIT THE SYSTEM                          \\
+        //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ 
             }else if(choice == 3){
                 System.out.println("Thank you for using MUYASARA system");
                 System.exit(0);
             }
-           
         }while(choice!=3);
-        
     }
    
-//-------------------------------------------------------------------------------------------  
+//==============================================================================
+//                                FIRST MENU                                  
+//==============================================================================
+    
     public static void firstMenu(){
         System.out.println("--------MUYASRA---------");
         System.out.println("1- creat acount");
@@ -75,8 +81,11 @@ public class MuyasraSystem {
         System.out.println("3- quit the system");
     } 
     
+//==============================================================================
+//                               CREAT ACOUNT                                 
+//==============================================================================
+    
     public static void creatAcount (UserList users){
-        
         //declaring the storage variables 
         String name,gendar,pass;
         int id,age,phoneNumber;
@@ -86,17 +95,11 @@ public class MuyasraSystem {
         String userType=scan.next();
         
         //error checking
-        int i=0;
-        while(!userType.equalsIgnoreCase("a")&&!userType.equalsIgnoreCase("v")){
-            System.out.println("you must write (a) as admin or (v) as visitor, try again!!");
-            userType=scan.next(); 
-            i++;
-            if(i==4){
-                System.out.println("\t\t!!!ERORE!!!\nFive times you entered incorrect information :/ ");
-                return;
-            }
+        if(checkError(userType).equalsIgnoreCase(null)){
+            return;
+        }else{
+            userType= checkError(userType);
         }
-        
         System.out.println("what's your name?");
         name=scan.next();
                
@@ -114,40 +117,49 @@ public class MuyasraSystem {
                 
         System.out.println("Enter your password:");
         pass=scan.next();
-               
-        /*
-        after entering the information the system specify the user to admin or
-        visitor and insert it to user list
-        */ 
+        
+        //spacifaing the user
         System.out.println("\n WELLCOME "+name+" in MUYASARA!!!\n");
         if(userType.equalsIgnoreCase("a")){  
             //for admin
             users.insert(name,id,pass,age,gendar,"admin",phoneNumber);
-            showAdminMenue(); 
+            User admin = users.findNode(id,pass);
+            showAdminMenue(admin); 
                    
         }else if(userType.equalsIgnoreCase("v")){
             //for visitor
             users.insert(name,id,pass,age,gendar,"visitor",phoneNumber);
-            showVisitorMenue(); 
+            User visitor = users.findNode(id,pass);
+            showVisitorMenue(visitor); 
         }
-        
     }
-
-//-------------------------------------------------------------------------------------------
-    private static void showAdminMenue() {
+    
+//==============================================================================
+//                            SHOW ADMIN MENUE                                 
+//==============================================================================
+    
+    private static void showAdminMenue(User admin) {
         System.out.println("--------MUYASRA---------");
         System.out.println("1- add trip");//--> israa
         System.out.println("2- show total number of visitor in the trip");// --> reema 
-        System.out.println("3- remove a visitor from trip");// --> haneen
-        System.out.println("4- log out");
+        System.out.println("3- log out");
         
         //passing the selection to AdminSelect 
-        AdminSelect(scan.nextInt());
+        System.out.println("------------------------");
+        System.out.println(admin.getName()+", Could you enter your choice?");
+        AdminSelect(scan.nextInt(),admin);
     }
     
+//==============================================================================
+//                               ADMIN SELECT                                 
+//==============================================================================
+    
     //this method perfome the task for admin
-    private static void AdminSelect(int selection) {
-        //1- add trip 
+    private static void AdminSelect(int selection, User admin) {
+    
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+       //                         add trip                               \\
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\    
         if (selection == 1) {
             //declare storege virable 
             int TripID, numOfChairs, AdminID, busID;
@@ -169,22 +181,16 @@ public class MuyasraSystem {
             System.out.println("Enter number of chairs: ");
             numOfChairs = scan.nextInt();
 
-            System.out.println("Enter your name: ");
-            adminName = scan.next();
-
-            System.out.println("Enter your ID: ");
-            AdminID = scan.nextInt();
-
-            Availability = true;
-
             System.out.println("Enter bus ID: ");
             busID = scan.nextInt();
 
             //insert the trip in the trip list 
-            Trip.AddTrip(TripID, date, departure,arrival, numOfChairs, adminName, AdminID, Availability, busID);
+            Trip.AddTrip(TripID, date, departure,arrival, numOfChairs, 
+                    admin.getName(),admin.getUserID(),true, busID);
         
-        
-        //2- show total visitor in the trip
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+       //                show total visitor in the trip                  \\
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
         }else if (selection == 2){
           System.out.println("Enter the trip ID: ");
           int TId = scan.nextInt();
@@ -192,76 +198,101 @@ public class MuyasraSystem {
           // call the VistorNumber function
           Trip.VistorNumber(TId);
 
-           
+                  
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+       //                          log-out                               \\
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ 
+        }else if (selection == 3){
+            return;
+        }
+        //if the user remaining logged in to account show the menu again
+        if(selection != 3){
+           showAdminMenue(admin); 
+        }
+    }    
+    
+//==============================================================================
+//                            SHOW VISITOR MENUE                                 
+//==============================================================================
+    
+    private static void showVisitorMenue(User visitor) {
+        System.out.println("--------MUYASRA---------");
+        System.out.println("1- browse trip"); // --> joud 
+        System.out.println("2- booking trip");//--> reema
+        System.out.println("3- cancel trip");
+        System.out.println("4- log out");
+        System.out.println("------------------------");
+        System.out.println(visitor.getName()+", Could you enter your choice?");
+        VisitorSelect(scan.nextInt(),visitor);
+          
+    }
+    
+//==============================================================================
+//                             VISITOR SELECT                                  
+//==============================================================================
+    
+    //this method perfome the task for visitor 
+    private static void VisitorSelect(int selection, User visitor) {
+        
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+       //                       BROWSE TRIP                              \\
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+        if (selection == 1) {
+            Trip.browseTrip();
             
-        
-        
-        //3- remove a visitor from trip
+ 
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+       //                       BOOKING TRIP                             \\
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+        }else if (selection == 2){
+         //call browse trip
+          Trip.browseTrip();
+         //take user input
+            System.out.print("Enter the trip ID: ");
+            int TId = scan.nextInt();
+            
+            // call book trip function
+            Trip.bookTrip(TId,visitor.getUserID() );
+          
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+       //                          cancel trip                           \\
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\         
         }else if (selection == 3){
             int idT,idV;
-            System.out.println("Choose the trip: ");
-          //browse trip();
-            System.out.println("Enter the trip ID: ");
+            
+            System.out.println("Choose the trip ID that you want to deleted: ");
             idT=scan.nextInt();
+                        
+           Trip.cancelTrip(idT);
             
-            System.out.println("Enter the visitor id: ");
-            idV=scan.nextInt();
-            
-           //Trip.RemoveTrip(idT,idv);
-            
-        //4- log out
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
+       //                          log-out                               \\
+       //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
         }else if (selection == 4){
             return;
         }
         
         //if the user remaining logged in to account show the menu again
         if(selection != 4){
-           showAdminMenue(); 
+           showVisitorMenue(visitor); 
         }
-        
-    }    
-    
-//-------------------------------------------------------------------------------------------    
-    private static void showVisitorMenue() {
-        System.out.println("--------MUYASRA---------");
-        System.out.println("1- browse trip"); // --> joud 
-        System.out.println("2- booking trip");//--> reema
-        System.out.println("3- log out");
-        VisitorSelect(scan.nextInt());
-          
     }
-    
-    //this method perfome the task for visitor 
-    private static void VisitorSelect(int selection) {
-        //1- browse trip
-        if (selection == 1) {
-            
-             Trip.browseTrip();
-            
- 
-        //2- booking trip
-        }else if (selection == 2){
-         //call browse trip
-         //
-         //take user input
-            System.out.print("Enter the trip ID: ");
-            int TId = scan.nextInt();
-            
-            System.out.println("Enter the visitor ID: ");
-           int  VId =scan.nextInt();
-            
-            // call book trip function
-            Trip.bookTrip(TId,VId );
-            
-            
-        //3- log out
-        }else if (selection == 3){
-            return;
+
+//==============================================================================
+//                               CHECK ERROR                                 
+//==============================================================================    
+
+    private static String checkError(String userType) {
+        int i=0;
+        while(!userType.equalsIgnoreCase("a")&&!userType.equalsIgnoreCase("v")){
+            System.out.println("you must write (a) as admin or (v) as visitor, try again!!");
+            userType=scan.next(); 
+            i++;
+            if(i==4){
+                System.out.println("\t\t!!!ERORE!!!\nFive times you entered incorrect information :/ ");
+                return null;
+            }
         }
-        
-        //if the user remaining logged in to account show the menu again
-        if(selection != 3){
-           showAdminMenue(); 
-        }
-    }    
+        return userType;
+    }
 }
