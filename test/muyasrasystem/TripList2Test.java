@@ -44,11 +44,10 @@ public class TripList2Test {
     public void testIsEmpty() {
         System.out.println("isEmpty");
         TripList2 instance = new TripList2();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isEmpty();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -72,8 +71,7 @@ public class TripList2Test {
         int idV = 0;
         TripList2 instance = new TripList2();
         instance.bookTrip(idT, idV);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -96,9 +94,10 @@ public class TripList2Test {
         System.out.println("VistorNumber");
         int idT = 0;
         TripList2 instance = new TripList2();
+        instance.AddTrip(idT, "5/6" ,"jeddah","makkah", 24 , "admin",12 , true, 5);
+        
         instance.VistorNumber(idT);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -112,8 +111,7 @@ public class TripList2Test {
         Trip expResult = null;
         Trip result = instance.findNode(data);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -137,5 +135,7 @@ public class TripList2Test {
         
         assertSame(expResult, result);
     }
+
+    
     
 }
