@@ -55,12 +55,11 @@ public class TripList2Test {
      * Test of browseTrip method, of class TripList2.
      */
     @Test
-    public void testBrowseTrip() {
+    public void testBrowseTrip_Trip() {
         System.out.println("browseTrip");
+        Trip head = null;
         TripList2 instance = new TripList2();
-        instance.browseTrip();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.browseTrip(head);
     }
 
     /**
