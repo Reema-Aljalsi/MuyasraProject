@@ -59,7 +59,7 @@ public class TripList2Test {
         System.out.println("browseTrip");
         Trip head = null;
         TripList2 instance = new TripList2();
-        instance.browseTrip(head);
+        instance.browseTrip();
     }
 
     /**
