@@ -80,9 +80,18 @@ public class TripList2Test {
     @Test
     public void testCancelTrip() {
         System.out.println("cancelTrip");
-        int idT = 0;
         TripList2 instance = new TripList2();
+        int idT = 9;
         instance.cancelTrip(idT);
+        
+        try{
+            instance.findNode(idT);
+            System.out.println("The deletion was unsuccessful ");
+        }
+        catch(NullPointerException e){
+            System.out.println("Cancellation was successfully completed.");
+                }
+      
       
     }
 
