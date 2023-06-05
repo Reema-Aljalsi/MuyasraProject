@@ -82,6 +82,16 @@ public class TripList2Test {
         System.out.println("cancelTrip");
         TripList2 instance = new TripList2();
         int idT = 9;
+        int idV =9;
+        if ( idT == idV){
+            if(instance.isEmpty() ==true){
+            System.out.println("There is no visitor in This Trip!");
+        }else{
+                System.out.println("cancel Trip successfully");
+            }
+            
+        }
+        
         instance.cancelTrip(idT);
         
         try{
@@ -91,6 +101,8 @@ public class TripList2Test {
         catch(NullPointerException e){
             System.out.println("Cancellation was successfully completed.");
                 }
+      
+    }
       
       
     }
