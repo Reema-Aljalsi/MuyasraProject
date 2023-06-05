@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package muyasrasystem;
 
 import org.junit.After;
@@ -58,7 +53,19 @@ public class TripList2Test {
         System.out.println("browseTrip");
         Trip head = null;
         TripList2 instance = new TripList2();
+        //creat two node of trip
+        //true --> print and display
+        instance.AddTrip(210, "5/6" ,"jeddah","makkah", 24 , "ahmed", 12 , true, 5);
+        Trip node=instance.findNode(210);
+        //fase --> don't show 
+        instance.AddTrip(211, "10/6" ,"jeddah","makkah", 24 , "mohammed", 12 , false, 5);
+        Trip node2=instance.findNode(211);
+        
         instance.browseTrip();
+        //check the availability if it false will not be printed
+        assertFalse(node2.checkAvailability());
+        //check the availability if it true will  be printed
+        assertTrue(node.checkAvailability());
     }
 
     /**
@@ -67,10 +74,20 @@ public class TripList2Test {
     @Test
     public void testBookTrip() {
         System.out.println("bookTrip");
-        int idT = 0;
-        int idV = 0;
-        TripList2 instance = new TripList2();
-        instance.bookTrip(idT, idV);
+        //we have a trip that want to booking
+        TripList2 trip = new TripList2();
+        trip.AddTrip(200, "5/6" ,"jeddah","makkah", 1 , "ahmed", 12 , true, 5);
+        Trip node= trip.findNode(200);
+        
+        //the user that will booking the trip 
+        UserList user=new UserList();
+        user.creatAccount("haneen", 210, "123", 20, "f", "visitor", 0500);
+        User node2= user.findNode(210, "123");
+                
+        //for booking we need visitore id and trip id 
+        trip.bookTrip(200,210);
+        
+        assertFalse(node.checkAvailability());
         
     }
 
@@ -80,32 +97,23 @@ public class TripList2Test {
     @Test
     public void testCancelTrip() {
         System.out.println("cancelTrip");
-        TripList2 instance = new TripList2();
-        int idT = 9;
-        int idV =9;
-        if ( idT == idV){
-            if(instance.isEmpty() ==true){
-            System.out.println("There is no visitor in This Trip!");
-        }else{
-                System.out.println("cancel Trip successfully");
-            }
-            
-        }
+        TripList2 trip = new TripList2();
+        trip.AddTrip(200, "5/6" ,"jeddah","makkah", 1 , "ahmed", 12 , true, 5);
+        Trip node= trip.findNode(200);
         
-        instance.cancelTrip(idT);
+        //the user that will booking the trip 
+        UserList user=new UserList();
+        user.creatAccount("haneen", 210, "123", 20, "f", "visitor", 0500);
+        User node2= user.findNode(210, "123");
+                
+        //for booking we need visitore id and trip id 
+        trip.bookTrip(200,210);
         
-        try{
-            instance.findNode(idT);
-            System.out.println("The deletion was unsuccessful ");
-        }
-        catch(NullPointerException e){
-            System.out.println("Cancellation was successfully completed.");
-                }
-      
+        trip.cancelTrip(200);
+        
+        assertTrue(node.checkAvailability());
+     
     }
-      
-      
-    
 
     /**
      * Test of VistorNumber method, of class TripList2.
@@ -116,9 +124,10 @@ public class TripList2Test {
         int idT = 0;
         TripList2 instance = new TripList2();
         instance.AddTrip(idT, "5/6" ,"jeddah","makkah", 24 , "admin",12 , true, 5);
-        
+        Trip t= instance.findNode(idT);
+        t.setNumOfVistor(20);
+        assertEquals(20, t.getNumOfVistor() );
         instance.VistorNumber(idT);
-        
     }
 
     /**
@@ -160,3 +169,5 @@ public class TripList2Test {
     
     
 }
+
+
