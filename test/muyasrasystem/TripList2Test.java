@@ -105,7 +105,7 @@ public class TripList2Test {
     }
       
       
-    }
+    
 
     /**
      * Test of VistorNumber method, of class TripList2.
